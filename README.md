@@ -1,8 +1,7 @@
 > 更新到 Ghost 0.5.6
 
-> Master 分支为Ghost原版  
-> [Ghost-zh](https://coding.net/u/tayuo/p/Ghost-On-Coding-Paas/git/tree/Ghost-zh/) 分支为GhostChina提供的中文版，支持UPYUN\QINIU\ALIYUN OSS
-
+ghost_zh 分支为lyhapp提供的中文版，支持UPYUN\QINIU\ALIYUN OSS
+专用于部署在coding
 ---
 
 主要变化
