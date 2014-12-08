@@ -1,0 +1,84 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+
+{{! Each post has the blog logo at the top, with a link back to the home page }}
+<header id="site-head">
+    <div id="site-head-content" class="inner">
+        {{#if @blog.logo}}
+            <a id="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>
+        {{else}}
+            <a href="{{@blog.url}}" class="blog-title">{{@blog.title}}</a>
+        {{/if}}
+    </div>
+</header>
+
+<nav class="main-nav overlay clearfix">
+    <a class="back-button icon-arrow-left" href="{{@blog.url}}">Home</a>
+</nav>
+
+
+<main class="content" role="main">
+
+    <article class="{{post_class}}">
+
+        {{! Everything inside the #post tags pulls data from the post }}
+        {{#post}}
+        {{#contentFor "meta"}}
+            <meta property="og:type" content="article" />
+            <meta property="og:url" content="{{url absolute="true"}}" />
+            <meta property="og:title" content="{{title}}" />
+            <meta property="og:site_name" content="{{@blog.title}}" />
+            <meta property="og:description" content="{{excerpt characters="220"}}..."/>
+            <meta property="article:author" content="https://facebook.com/<YOUR FACEBOOK ID>" />
+            <meta property="article:published_time" content="{{date format="YYYY-MM-DD"}}" />
+            {{#foreach tags}}<meta property="article:tag" content="{{name}}" />{{/foreach}}
+            <meta property="fb:profile_id" content="<YOUR FACEBOOK ID>" />
+            <meta property="fb:admins" content="<YOUR FACEBOOK ID>" />
+        {{/contentFor}}
+
+        {{! Everything below outputs content of the the post which has been published }}
+        <div class="post-meta">
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format='DD MMM YYYY'}}</time>
+        </div>
+
+        <h1 class="post-title">{{{title}}}</h1>
+
+        {{#if tags}}
+            <div class="post-meta">
+                by {{ author }} {{tags prefix=" on "}}
+            </div>
+        {{/if}}
+
+        <hr />
+
+        <section class="post-content">
+            {{content}}
+        </section>
+
+        <footer class="post-footer">
+
+            <section class="share">
+                <a class="icon-twitter" href="http://twitter.com/share?text={{title}}&url={{url absolute="true"}}"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url={{url absolute="true"}}"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+        {{/post}}
+
+    </article>
+
+</main>
