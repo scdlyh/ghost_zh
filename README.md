@@ -2,7 +2,7 @@
 
 ghost_zh 分支为lyhapp提供的中文版，支持UPYUN\QINIU\ALIYUN OSS
 专用于部署在coding
----
+---演示图片为英文版
 
 主要变化
 
